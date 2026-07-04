@@ -3,7 +3,7 @@
 3.Attribute-Based Access Control (ABAC)												()                                  [16-MAY-2026]  ()
 4.OAuth 2.0																			(Vinotech)						    [05-MAY-2026]  (Done)
 5.OpenID Connect																	(James Collerton)					[16-MAY-2026]  (Done)
-6.JWT / session-based auth and SAML													()									[16-MAY-2026]  ()
+6.SAML																				()									[16-MAY-2026]  ()
 7.API keys                                                                          ()									[16-MAY-2026]  ()
 8.Mutual TLS (mTLS)                                                                 ()									[16-MAY-2026]  ()
 9.TLS/HTTPS                                                                         ()									[16-MAY-2026]  ()

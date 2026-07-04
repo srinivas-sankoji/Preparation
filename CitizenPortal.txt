@@ -1,0 +1,115 @@
+#################################################################  Citize Portal ##########################################################################################
+
+Spring Boot 3
+Spring Security
+JWT / OAuth2
+Spring Data JPA
+PostgreSQL
+Flyway / Liquibase
+Swagger / OpenAPI
+JUnit + Mockito
+Testcontainers
+
+React + Vite
+TypeScript
+React Router
+Axios
+React Hook Form
+Zod/Yup validation
+Tailwind CSS / Material UI
+Recharts for dashboard charts
+
+Flyway Migration
+CQRS
+
+Country Master
+State Master
+District Master
+Zone Master
+Muncipality/Mandal Master
+Village Master
+Street/Area/Colony Master
+
+Religion
+Caste
+Education details
+School Management
+Police Management
+Muncipal Management
+Electrcity Management
+Water board Managememt
+Supervisor Management
+Aasha Worker Management
+
+FINAL PRACTICAL RECOMMENDATION :
+================================
+Phase 1 :
+---------
+React
+Spring Boot
+PostgreSQL
+Spring Cloud Gateway
+NGINX
+
+Phase 2 :
+---------
+Redis
+OpenSearch
+
+Phase 3 :
+---------
+Kafka
+HA replicas
+Multi-region DR
+
+Complete flow :
+===============
+
+		User Browser
+			↓
+		React Frontend
+			↓
+		Azure Front Door / DNS
+			↓
+		Azure Application Gateway or NGINX Ingress
+			↓
+		Spring Cloud Gateway
+			↓
+		┌───────────────────────────────┐
+		│ Auth Service                  │
+		│ Citizen Service               │
+		│ Master Service                │
+		│ Document Service              │
+		│ Search Service                │
+		│ Notification Service          │
+		└───────────────────────────────┘
+			↓
+		PostgreSQL / OpenSearch / Redis / Kafka
+		
+| Layer                     | Responsibility                        |
+| ------------------------- | ------------------------------------- |
+| Azure App Gateway / NGINX | External traffic, SSL, Ingress        |
+| Spring Cloud Gateway      | API routing, JWT, filters, rate limit |
+| Microservices             | Business logic                        |
+| PostgreSQL                | Main data                             |
+| OpenSearch                | Fast search                           |
+| Redis                     | Cache                                 |
+| Kafka                     | Event sync                            |
+
+
+Recomended Architecture :
+=========================
+Use only  initially :
+---------------------
+React
+Spring Boot
+PostgreSQL
+NGINX
+Spring Cloud Gateway
+
+Without :
+---------
+Kafka
+Redis
+OpenSearch
+Read replicas

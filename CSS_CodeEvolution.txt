@@ -7,7 +7,7 @@
 7.Border                                    [01-MAY-2020]  (Done)
 8.Padding                                   [01-MAY-2020]  (Done)
 9.Margin                                    [01-MAY-2020]  (Done)
-10.Tables                                   [01-MAY-2020]  (Done)
+10.Tables                                   [01-MAY-2020]  (Done)	
 11.Span and Div                             [01-MAY-2020]  (Done)					
 12.Selectors                                [02-MAY-2020]  (Done)
 13.More Selectors                           [02-MAY-2020]  (Done)

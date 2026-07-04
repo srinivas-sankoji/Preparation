@@ -72,3 +72,11 @@ Complete Service List
 17.AWS GuardDuty: Security Monitoring
 18.AWS Backup: Backup Solutions
 19.AWS Cost Explorer: Cost Management
+
+
+
+
+
+
+
+
