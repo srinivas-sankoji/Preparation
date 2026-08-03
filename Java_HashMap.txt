@@ -34,16 +34,15 @@ Two equal objects must produce the same hashCode consistently.
 Note :
 ------
 All objects in Java by default inherits implementation of hashCode() defined in Object class.
-This hashCode() produces hashCode by typically converting the internal address of the object into an Integer.
-Thus producing differrent hashCode for different objects.
+This hashCode() produces hashCode by typically converting the internal address of an object into an Integer.
+Thus producing the differrent hashCode's for different objects.
 
 How Hashmap calculates the index of a Bucket :
 ----------------------------------------------
 HashMap maintains an Array to store its key value pairs.
 Each Entry stored inside an Array is called Bucket Location.
-Whenever we store or retrieve any key value pair, HashMap calculates the index of the Bucket Location.
 Key object is used to calculate the index of the Bucket Location.
-Hash value is calculated using hash(key) i.e. private method of HashMap.
+Whenever we want to store or retrieve any key value pair then HashMap calculates the index of the Bucket Location by using hash function.
 
 	final int hash(Object key)
 	
@@ -61,7 +60,7 @@ This will never throw ArrayIndexOutOfBoundsException as the index value is alway
 
 What put()does :
 ----------------
-First It checks for the key object.
+Whenever we are trying to insert key value pair in the HashMap, it checks for the key object.
 If the key is null then then value is stored in Array[0] because hashCode for null is always 0.
 When we try to insert other element, hashValue is calculated by calling hashCode() on the key object.
 Now the generated hashValue is used to identify the Bucket Location and stores the Entry object into an Array.
@@ -92,7 +91,7 @@ Inconsistent hashCode :
 1.If hashCode() returns different hashCode's for the same object then HashMap may fail to locate the key during get() or remove() operations.
 The key might be in one bucket during put() but looked up in a different bucket.
 
-2.If hashCode() returns the same value for different objects then all keys go to the same bucket.
+2.If hashCode() returns same hashCode for for different objects then all keys go to the same bucket.
 This will degrade the performance of HashMap from O(1) to O(n) like a Linkedlist.
 
 Inconsistent equals :

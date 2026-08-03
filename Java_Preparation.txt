@@ -1,36 +1,33 @@
-Terminology :
-*************
-1.Micro services to Server less
-2.Event Driven Architecture
-3.Service Blocks
-4.Statelessness
+1.Micro services to Server less									()
+2.Event Driven Architecture										()
+3.Service Blocks												()
+4.Statelessness													()
 5.Six Architectural Constraints Defined in REST (Uniform Interface,Client–Server,Stateless,Cacheable,Layered System,Code on Demand)  (restfulapi.net)
-6.Traditional Application vs Cloud Native Application
-7.Twelve Factor Principles
-8.Data Driven Product Development
-9.SOLID Principles
+6.Traditional Application vs Cloud Native Application			()
+7.Twelve Factor Principles										()
+8.Data Driven Product Development								()
+9.SOLID Principles												()
 
-10.Spring vs Spring Boot (Java Techie)
-11.Spring ServiceLocatoryFactoryBean  (Java Techie)
-12.JDK 12 Features (Java Techie)
-13.Java 8 Consumer,Supplier,Predicate Interface (Java Techie)
-14.Java 8 Functional Interface (Java Techie)
-15.Java 8 Streams (Java Techie)
-16.How Spring Boot Application Works Internally (Java Techie)
-17.JIRA Project Management (Java Techie)
-18.Prevent Singleton Class form Reflection and Serialization (Java Techie)
-19.Singleton Pattern Best Practices (Java Techie)
-20.SQL vs No SQL (Java Techie)
-21.Spring 5 WebClient (Java Techie)
-22.Spring Boot with JDBI (Java Techie)
-23.@Autowired,@Qualifier and @Resource  (Java Techie)
-
-24.Sonar Cube (Java Techie)
-25.Java 8 Collectors
-26.Completable Future in Java
-27.ThreadPoolExecutor in Java
-28.Load Balancer in Java
-29.Java Anonymous Class Example (Java 8)
-30.Enum in Switch 
+10.Spring vs Spring Boot 										(Java Techie)
+11.Spring ServiceLocatoryFactoryBean  							(Java Techie)
+12.JDK 12 Features 												(Java Techie)
+13.Java 8 Consumer,Supplier,Predicate Interface 				(Java Techie)
+14.Java 8 Functional Interface 									(Java Techie)
+15.Java 8 Streams 												(Java Techie)
+16.How Spring Boot Application Works Internally 				(Java Techie)
+17.JIRA Project Management 										(Java Techie)
+18.Prevent Singleton Class form Reflection and Serialization 	(Java Techie)
+19.Singleton Pattern Best Practices 							(Java Techie)
+20.SQL vs No SQL 												(Java Techie)
+21.Spring 5 WebClient											(Java Techie)
+22.Spring Boot with JDBI 										(Java Techie)
+23.@Autowired,@Qualifier and @Resource  						(Java Techie)
+24.Sonar Cube 													(Java Techie)
+25.Java 8 Collectors											()
+26.Completable Future in Java									()
+27.ThreadPoolExecutor in Java									()
+28.Load Balancer in Java										()
+29.Java Anonymous Class Example 								(Java 8)
+30.Enum in Switch 												()
 
 

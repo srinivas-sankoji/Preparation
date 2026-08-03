@@ -504,3 +504,18 @@ Microservice Resilience ()
 
 Kubernetes Revise ()
 Helm Charts ()
+
+Parking lot System Design ()
+Strangler Fig Design Pattern ()
+SQL vs NoSQL ()
+HashMap & Consistent Hashing ()
+Forward Proxy vs Reverse Proxy ()
+Load Balancer ()
+RateLimiter Algorithms ()
+Streams ()
+Java 8 Features ()
+Annotations in Depth ()
+
+######################################### August 2026  ###############################################
+
+React Basics ()

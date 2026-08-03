@@ -3,6 +3,7 @@
 3.Folder Structure                                                  (Code Evolution)   			[05-NOV-2023]  ()
 4.Components                                                        (Code Evolution)   			[09-NOV-2023]  (Done)
 5.Functional Components                                             (Code Evolution)   			[09-NOV-2023]  (Done)
+
 6.Class Components                                                  (Code Evolution)   			[10-NOV-2023]  (Done)
 7.Hooks update                                                      (Code Evolution)   			[10-NOV-2023]  ()
 8.React JSX                                                         (Code Evolution)   			[10-NOV-2023]  (Done)
@@ -79,7 +80,7 @@ Utilities
 ########################################################### 2.Hello world ###########################################################
 
 To create a React Application we will be using the command create-react-app.
-create-react-app is a CLI that allows us to quickly create the React Application with no configuration.
+create-react-app is a CLI command that allows us to quickly create the React Application with no configuration.
 
 	npx create-react-app hello-world
 	
@@ -105,12 +106,12 @@ At the root level we have 3 Folders and 4 Files.
 
 package.json contains the dependencies and the scripts required for an Application.
 
-Ther is a folder called node_modules where all the dependencies are installed.
-It will generated when we run the create-react-app command or when we run npm install.
+There is a folder called node_modules where all the dependencies are installed.
+It will be generated when we run the create-react-app command or when we run npm install.
 
 In the public folder we have index.html file.
 This is the only HTML file we are going to have in a React Application.
-The view might dynamically change in the Browser but it is the index.html we get displayed in the Browser.
+The view will be dynamically change in the Browser but it is the index.html that is getting displayed in the Browser.
 Typically we are not going to add any code in the index.html file because we want React to control the UI.
 For that purpose we have on <div> with id="root" i.e.
 
@@ -120,28 +121,47 @@ As a Developer we will be working in the src folder during Development.
 Starting point for React Application is index.js.
 In index.js we specify the Root component i.e. App Component and DOM Element which will be controled by React.
 
-
-
-
-	
-
-
-
-
-
 ########################################################### 4.Components #################################################################
 
-In React, Component represnts part of the user interface and are reusable.
-The parent Component is the App Component which contains all the components.
+1.A component normally represents one logical portion of the UI.
+A React component is an independent, reusable JavaScript function that contains the logic and JSX required to describe a portion of the user interface.
+Examples include
 
-A Component code is placed inside Javascript file.For example App Component is placed inside App.js.
-We can also have components with .jsx extension.
+	Navbar
+	LoginForm
+	SubmitButton
+	EmployeeTable
+	ProductCard
+	Dashboard
+		
+2.App is commonly the root component of a React application.
+However Any component that renders another component is considered as a Parent of that component.
 
-In React we have two types of Components.
-1.Functional Component (Stateless)
-2.Class Component      (Stateful)
+3.React components can be written in .js or .jsx files.
+However React does not require exactly one component per file.
+We can define multiple related components in one file.
 
-Functional components are literally JavaScript Functions which will return the HTML which describes the UI.
+	function Title() {
+	  return <h1>Employee Management</h1>;
+	}
+
+	function Description() {
+	  return <p>Manage employee information here.</p>;
+	}
+
+	export default function Header() {
+	  return (
+		<header>
+		  <Title />
+		  <Description />
+		</header>
+	  );
+	}
+
+4.React Components can be declared using JavaScript functions or ES6 classes.
+Modern React applications primarily use Function Components with Hooks.
+Class Components remain supported but are generally used in older applications.
+A Function Component is a JavaScript function that returns JSX or another React-renderable value describing what should appear in the user interface.
 
 Example :
 ---------
@@ -167,8 +187,7 @@ Example :
 
 	export default App;
 
-Class Components on the other hand are regular ES6 classes which extends Componnet Class from React Library.
-They must contain render() which intern returns HTML.
+5.Class Components are ES6 classes which extend Component Class and must contain render() which returns HTML.
 
 Example :
 ---------
@@ -177,11 +196,11 @@ Example :
 	import { Component } from "react";
 
 	class Welcome extends Component {
-		render(){
-			return <h1>Class Component</h1>;
-		};
-
+	  render() {
+		return <h1>Welcome to React</h1>;
+	  }
 	}
+
 	export default Welcome;
 	
 	import './App.css';
@@ -201,59 +220,128 @@ Example :
 
 ########################################################### 5.Functional Components ######################################################
 
-Functional Components are nothing but JavaScript Functions which will optionally recieve an Object of properties i.e. props 
-and will return an HTML which describe the UI.
-Here HTML Component is nothing but JSX.
+A Functional Component is a JavaScript function that describes a part of the user interface.
 
-Scenario 1 :
-------------
+1.Functional Component is declared using a regular JavaScript function or an arrow function.
+2.Functional Component can optionally receive an object called props.
+3.Functional Component returns JSX that describes what should be displayed in the browser.
+4.Functional Component must have a name that starts with an uppercase letter.
+5.Functional Component can be reused inside other React components.
 
+Although JSX looks similar to HTML but it is not regular HTML.
+JSX is a JavaScript Extension that React uses to describe the UI.
+
+1.Basic syntax :
+----------------
+
+	function ComponentName() {
+	  return <h1>Content displayed by the component</h1>;
+	}
+	
+Note :
+------
+1.React component name must begin with an uppercase letter.
+In JSX, lowercase tag names are treated as built-in HTML elements while names starting with an uppercase letter are treated as custom React components.
+
+	Correct:
+
+	function FunctionalComponent() {
+	  return <h1>Functional Component</h1>;
+	}
+
+	Incorrect:
+
+	function functionalComponent() {
+	  return <h1>Functional Component</h1>;
+	}
+	
+2.Functional component using a regular function :
+-------------------------------------------------
+
+	import React from 'react';
+
+	function FunctionalComponent(){
+			return <h1>Function Component Example using regular function</h1>;
+	}
+
+	export default FunctionalComponent;
+	
 	import './App.css';
 	import FunctionalComponent from './Components/FunctionalComponent';
 
 	function App() {
 	  return (
-		<div className="App">
-		  <FunctionalComponent></FunctionalComponent>
-		</div>
+	  <div className="App">
+		<FunctionalComponent></FunctionalComponent>
+	  </div>
 	  );
 	}
+
+	export default App;
+
+Note :
+------
+export makes the component available outside its file. 
+import brings the exported component into another file.
+
+3.Functional component using an arrow function :
+------------------------------------------------
+A Functional Component can also be declared using an arrow function.
+
+	const ArrowComponent = () => {
+		return (
+			<div>
+				<h1>Arrow Function Component</h1>
+				<p>This component is declared using an arrow function.</p>
+			</div>
+		);
+	};
+
+	export default ArrowComponent;
 	
-Here our Functional Component is no where connected to React.
-For that we need to export and import the Component.
-
-Scenario 2 :
-------------
-We can also define the Functional Components using Arrow Functions.
-
-	const functionlComponent1 = () => <h1>Functional Component Example Two</h1>;
-
-Note1 :
--------
-From the above scenario we are exporting the Component with default Component.
-In this case we can import the Componnet with any name.
-
-	export const FunctionlComponent1 = () => <h1>Functional Component Example Two</h1>;
-
-We can also have the named export.
-In this case we need to use the same name while importing the Functional Component.
-
 	import './App.css';
-	import { FunctionlComponent1 } from './Components/FunctionalComponent';
+	import ArrowComponent from './Components/ArrowComponent';
 
 	function App() {
 	  return (
-		<div className="App">
-		  <FunctionlComponent1/>
-		</div>
+	  <div className="App">
+		<ArrowComponent></ArrowComponent>
+	  </div>
 	  );
 	}
 
 	export default App;
 	
-Note2 :
--------
-For most of the cases we will be using default export.
+4.Defaut export vs Named export :
+---------------------------------
+A File can have only one default export.
+Technically a default export can be imported using a different name.
+However using the same meaningful name is recommended because it makes the code easier to understand.
+
+	function FunctionalComponent() { 
+		return <h1>Default Export Component</h1>; 
+	} 
+	
+	export default FunctionalComponent;
+
+
+A file can contain multiple named exports.
+
+	export function Header() { 
+		return <h1>Application Header</h1>; 
+	} 
+	
+	export function Footer() { 
+		return <p>Application Footer</p>; 
+	}
+
+Recommended practice :
+----------------------
+When a file contains one primary component, a default export is commonly used.
+
+	export default Employee;
+
+When a file contains multiple components or values, named exports can be used.
 
 ########################################################### 6.Class Components ###########################################################
 
@@ -320,44 +408,119 @@ In Functional/Class Component we are simply returning HTML.Here we are not retur
 
 ########################################################### 8.React JSX  #################################################################
 
-JavaScript Xml (JSX) is an extension to JavaScript language syntax.
-With React library we can write the XML like code for Elements and Components.
-Just like XML,JSX can have tag name,attributes and children.
+1.What is JSX :
+---------------
+JSX is a syntax extension for JavaScript that allows us to write HTML-like markup inside a JavaScript file.
+JSX is commonly used in React components to describe what the user interface should look like.
+JSX and React are separate technologies.
+React is a JavaScript library where as JSX is a syntax extension for JavaScript which is commonly used with React.
+
+	function Hello() {
+	  return <h1>Hello Srinivas</h1>;
+	}
+
+	export default Hello;
+
+	Although the following code looks like HTML but it is not regular HTML and It is JSX written inside JavaScript.
+
+	<h1>Hello Srinivas</h1>
 
 JSX is not a necessity to write React Application.
 We can definitely write React Application without JSX.
 But JSX makes React code simpler and elegant.
 JSX ultimately transpiles to pure JavaScript which is understood by the Browser.
 
-How JSX works :
----------------
-Create the Component using JSX.
+2.Why do we use JSX :
+---------------------
+Without JSX, creating a complex user interface using JavaScript function calls becomes difficult to read.
 
-	const Hello = () => {
-    return <h1>Hello Srinivas</h1>;
+Using JSX :
+
+	function Employee() {
+	  return (
+		<div className="employee">
+		  <h2>Srinivas</h2>
+		  <p>Senior Software Engineer</p>
+		</div>
+	  );
 	}
 
-	export default Hello;
-	
-We can also create the Component without using JSX.
-React library provides CreateElement() method to create a Component without using JSX.
-CreateElement() accepts 3 parameters.
+The same UI without JSX :
 
-1.First parameter is the String which specifies the HTML element to be rendered.
-2.Second parameter is the optional parameter.It is an Object with key value pair which can be applied to the element.
-3.Third parameter is the children for the HTML element.
+	import { createElement } from "react";
 
-	const Hello = () => {
-    return React.createElement('div',{id:'hello',className:'dummy'},React.createElement('h1',null,'Welcome Srinivas'));
+	function Employee() {
+	  return createElement(
+		"div",
+		{ className: "employee" },
+		createElement("h2", null, "Srinivas"),
+		createElement("p", null, "Senior Software Engineer")
+	  );
 	}
 	
-Here each JSX Element is syntactically replacement of React.createElement which inturn uses React Library.
-That is the reason we are importing React library whenever we are using JSX.
-                  
+Both approaches describe the same user interface but JSX is easier to read and maintain.
+React supports createElement() as an alternative to JSX although JSX is normally preferred because nested markup is clearer.
+
+3.JSX is Optional :
+-------------------
+JSX is not mandatory for creating a React application.
+A React component can be created using either
+1.JSX
+2.React's createElement() function
+
+Both components create the same React element.
+JSX is preferred in most React applications because it makes the component structure easier to understand.
+
+4.JSX is not directly understood by the Browser :
+-------------------------------------------------
+Browsers understand JavaScript, HTML and CSS but they do not directly execute raw JSX syntax.
+For example 
+
+	const heading = <h1>Hello Srinivas</h1>;
+	
+A React build tool transforms JSX into JavaScript before the application runs in the browser.
+
+	JSX code 
+	   ↓ 
+	JSX transformation
+	   ↓
+	JavaScript representation of React elements
+	   ↓
+	React renders the elements
+	   ↓
+	Browser DOM is updated
+	
+5.createElement() syntax :
+--------------------------
+The syntax of createElement() is createElement(type, props, ...children)
+It accepts the following arguments.
+
+6.JSX syntax rules :
+--------------------
+1.JSX must return one root element
+2.All JSX tags must be closed
+3.JSX attributes normally use camelCase
+4.Use className instead of class
+5.JavaScript expressions can be embedded inside JSX using curly braces { }
+6.JSX comments uses {/* Employee heading */}
+
+6.Create an employee profile component :
+----------------------------------------
+JSX structure
+JavaScript expressions
+Attributes
+className
+Dynamic values
+Conditional rendering
+Inline styles
+Child elements
+Custom components
+
+              
 ########################################################### 9.Props  #####################################################################
 
-Props is an optional input to the Component which makes the Component dynamic.
-Requirement here is to pass the name from App Component to the Greet Componnet and render that name in the Browser.
+A Functional component can optionally receive the data from its parent component through an Object called props.
+Requirement here is to pass the name from App Component to the Employee Componnet and render the details in the Browser.
 
 	import React from "react";
 
@@ -372,6 +535,19 @@ Requirement here is to pass the name from App Component to the Greet Componnet a
 
 	export default Greet;
 	
+	function Employee(props) { 
+		return ( 
+		<div>
+		<h2>Employee Details</h2> 
+		<p>Name: {props.name}</p> 
+		<p>Role: {props.role}</p> 
+		<p>Experience: {props.experience} years</p> 
+		</div> 
+		); 
+	} 
+	
+	export default Employee;
+	
 	function App() {
 	  return (
 		<div className="App">
@@ -385,6 +561,17 @@ Requirement here is to pass the name from App Component to the Greet Componnet a
 	  );
 	}
 
+	export default App;
+	
+	function App() { 
+	 return ( 
+	 <div> 
+	 <Employee name="Srinivas" role="Senior Software Engineer" experience={6} />
+	 <Employee name="Nandini" role="Java Developer" experience={4} /> 
+	 </div> 
+	 ); 
+	} 
+	
 	export default App;
 	
 Note :
