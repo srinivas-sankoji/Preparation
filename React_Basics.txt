@@ -3,18 +3,17 @@
 3.Folder Structure                                                  (Code Evolution)   			[05-NOV-2023]  ()
 4.Components                                                        (Code Evolution)   			[09-NOV-2023]  (Done)
 5.Functional Components                                             (Code Evolution)   			[09-NOV-2023]  (Done)
-
 6.Class Components                                                  (Code Evolution)   			[10-NOV-2023]  (Done)
 7.Hooks update                                                      (Code Evolution)   			[10-NOV-2023]  ()
 8.React JSX                                                         (Code Evolution)   			[10-NOV-2023]  (Done)
 9.Props                                                             (Code Evolution)   			[10-NOV-2023]  (Done)
 10.State                                                            (Code Evolution)   			[10-NOV-2023]  (Done)
-11.setState                                                         (Code Evolution)   			[12-NOV-2023]  (Done)
+11.Updating State with useState                                     (ChatGPT)   				[08-AUG-206]   ()
 12.Destructuring Props and State                                    (Code Evolution)   			[12-NOV-2023]  (Done)
+
 13.Event Handling                                                   (Code Evolution)   			[12-NOV-2023]  (Done)
 14.Binding Event Handlers                                           (Code Evolution)   			[14-NOV-2023]  (Done)
 15.Methods as Props                                                 (Code Evolution)   			[14-NOV-2023]  (Done)
-
 16.Conditional Rendering                                            (Code Evolution)   			[18-NOV-2023]  (Done)
 17.List Rendering                                                   (Code Evolution)   			[18-NOV-2023]  (Done)
 18.Lists and Keys                                                   (Code Evolution)   			[18-NOV-2023]  (Done)
@@ -345,63 +344,7 @@ When a file contains multiple components or values, named exports can be used.
 
 ########################################################### 6.Class Components ###########################################################
 
-Class Componnets are basically ES6 Classes.
-Similar to Functional Componnet,Class Component optionally recieves props as an input and returns an HTML which describes the UI.
-Class Component can maintain its private internal state and uses that information to describe the user interface.
-
-Whenever we are creating Class Component we need to import two Components 
-1.React
-2.Component
-
-For the Class to become React Component It should extend Component Class and override the render().
-render() should return either HTML or null.
-
-	import React from "react";
-	import { Component } from "react";
-
-	class Welcome extends Component {
-		render(){
-			return <h1>Class Component</h1>;
-		};
-
-	}
-
-	export default Welcome;
-
-	import './App.css';
-	import  Welcome from './Components/Welcome';
-
-
-	function App() {
-	  return (
-		<div className="App">
-		  <Welcome></Welcome>
-		</div>
-	  );
-	}
-
-	export default App;
-	
-Difference between Functional Components and Class Components :
----------------------------------------------------------------
-Functional Componnets are JavaScript functions which optionally recieves props as an input and returns the HTML which describes the UI.
-Use Functional Components as much as possible.
-Always prefer Functional Components.
-Absence of this keyword in Functional Component.
-If we are using Functional Component we will be forced to think about the solution without having a state.
-If we have number of Components each having its own state maintainance and debugging the Application is bit difficult.
-Functional Components are intended to be without any complicated logic and are mainly responsible for the user interface.
-This is the reason Functional Components are Stateless/Dumb/Presentational Components.
-
-Class Components are more feature rich.
-Class Components can maintain their own private data i.e. state.
-Class Components can contain complex UI logic.
-Class Components provide life cycle hooks.
-This is the reason Class Components are Stateful/Smart/Container Components.
-
-Note :
-------
-In Functional/Class Component we are simply returning HTML.Here we are not returning regular HTML but we are returning JSX.
+Class Components are legacy and not required. Focus only on Functional Components.
 
 ########################################################### 7.Hooks update ###############################################################
 
@@ -582,135 +525,22 @@ Props are Immutable and its value cannot be canged.
                          
 ########################################################### 10.State  ####################################################################                        
 
-Every Component in React i.e. either Fucntional or Class Component will return the JSX which describes the UI.
-The way to influence what needs to be rendered into the browser is by using props.
-The second way to influence what needs to be rendered in the browser is by using state.
-Both props and state holds the information which influences the UI.
+A React component sometimes needs to remember information between renders.
+For example Component may need to remember
+1.Whether a User is logged in
+2.Whether a User has subscribed
+3.The current Counter value
+4.Text entered into an input field
+5.The selected product
+6.Items added to a shopping cart
+7.Whether a dialog is open or closed
 
-props :
-props are passed to the Component.
-props can be used as Function parameters.
-props are Immutable because variables are passed down from Parent Component to child Component.
+This component-specific memory is called State.
+State allows a Functional component to store information and update the user interface when that information changes.
 
-state :
-State is managed within the Component.
-State variables are declared within the function body.
-State can be changed because Component has full control of it.
-
-Create the Component named Message.js.
-Here the requirement is need to have subscribe button.
-Whenever we click on subscribe button it should display the message Thank you for subscribing.
-Here we cannot use props because these are immutable.
-The solution is to use the state Object.
-
-Steps to create state Object.
-1.Create the class constructor.
-2.create the state Object with the message.
-3.Create the Subscribe button and perform onClick
-4.Change the state on Button Click.
-
-	import React from "react";
-	import { Component } from "react";
-
-	class Message extends Component{
-
-		constructor(){
-			super();
-			this.state={
-				message:'Welcome visitor',
-				subscribe:'Subscribe'
-			}
-		}
-
-		changeMessage(){
-			this.setState({
-				message: 'Thank you for Subscribing',
-				subscribe: 'unsubscribe'
-			})
-		}
-
-		render(){
-			return(
-			<div>
-				<h1>{this.state.message}</h1>
-				<button onClick={() => this.changeMessage()}>{this.state.subscribe}</button>
-			</div>
-			)
-		};
-	}
-	export default Message;
+########################################################### 11.Updating State with useState  #################################################################
 
 
-########################################################### 11.setState  #################################################################
-
-Create one Counter component which will have Count value and a button which will increment count value.
-
-	import React from "react";
-	import { Component } from "react";
-
-	class Counter extends Component{
-
-		constructor(){
-			super();
-			this.state={
-				count : 0
-			}
-		}
-		render(){
-			return <h1>Counter value : {this.state.count}</h1>;
-		}
-
-	}
-
-	export default Counter;
-	
-Add a button to the Counter.
-
-	  render(){
-        return(
-            <div>
-            <h1>Counter value : {this.state.count}</h1>
-            <button>Increment</button>
-            </div>
-        )
-    }
-	
-we use the setState() to update the state value on button click.
-setState() accepts an Object as first parameter and Arrow function as second parameter.
-
-	 <button onClick={() => this.increment()}>Increment</button>
-	 
-	  increment() {
-        this.setState({
-            count: this.state.count + 1
-        }
-        )
-    }
-	
-setState() with both the parameters
-	
-	   increment() {
-            this.setState({
-                count: this.state.count + 1
-            },
-				() => {
-					console.log(this.state.count);
-				}
-			) 
-		}
-		
-
-	
-Note :
-------
-1.The only place where we can assign the state is constructor.	
-We cannot modify the state directly.If we modify the state React will not re-render the Component.
-Always make use of setState and never modify the state directly.
-
-2.If the code has to be executed after the state has been updated,place the code in the callback function which is the second argument to setState().
-React will group multiple setState() calls into single setState for better performance.
-
-3.Whenever we want to update the state based on previous state value,pass in as a function argument instead of regular Object.
 
 ########################################################### 12.Destructuring Props and State  ############################################
 

@@ -331,4 +331,36 @@ Demo Preparation
 
 08-AUG-2026 & 09-AUG-2026 :
 ---------------------------
+Hooks Introduction (Done)
+UseState (Done)
+
+Provide in a short description which is easy to understand why Resource and capabilities model is required.
+Provide the Cannonical JSON for Resource and capabilities which should include both RF Mesh and Cellular. 
+Also while providing i want to know how exactly you are genarting the cannonical model for Device Lifecycle through the code.
+No need to explain the complete code flow and i need it in a simple mapping table.
+
+Gateway Association -- Connectivity / Gateway section.
+Sensor Telemetry
+Sensor/Device Health
+Connectivity
+Connectivity Statistics
+
+24-AUG-2026 :
+-------------
+Complete API Testing (Done)
+Documentation ()
+Organization Settings ()
+Update Images (Done)
+
+25-AUG-2026 :
+-------------
+Region Implementation (Done)
+Commit the code to GitHub ()
+
+git config user.name "emedisoftsolutions"
+git config user.email "emedisoftsolutions@gmail.com"
+
+
+
+
 

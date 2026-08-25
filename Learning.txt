@@ -519,3 +519,8 @@ Annotations in Depth ()
 ######################################### August 2026  ###############################################
 
 React Basics ()
+
+######################################### August 2026  ###############################################
+
+git config user.name "emedisoftsolutions"
+git config user.email "emedisoftsolutions@gmail.com"

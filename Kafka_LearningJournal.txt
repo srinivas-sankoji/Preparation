@@ -172,12 +172,13 @@ offsets.topic.num.partitions=1
 min.insync.replicas=1
 default.replication.factor=1
 
-To Run the Single Node Cluster on Windows copy the Path in Environment Variable i.e 
-D:\Software\kafka_2.12-2.4.0\bin\windows in System variable Path
+To Run the Single Node Cluster on Windows copy the Path in Environment Variable i.e  D:\Software\kafka_2.12-2.4.0\bin\windows in System variable Path
+
 To Run the Kafka,Kafka First We Need to Start the Zookeeper 
---> zookeeper-server-start.bat D:\Software\kafka_2.12-2.4.0\config\zookeeper.properties
+--> zookeeper-server-start.bat F:\kafka_2.13-3.5.0\config\zookeeper.properties
+
 To Start the Kafka Server 
---> kafka-server-start.bat D:\Software\kafka_2.12-2.4.0\config\server.properties
+--> kafka-server-start.bat F:\kafka_2.13-3.5.0\config\server.properties
 
 Now the Zookeeper and Kafka are Running on Separate Windows.
 If We Want to Shut Down ctrl+c 
@@ -191,4 +192,20 @@ To Create a Producer
 Enter the Messages
 To Create a Consumer 
 --> kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from beginning
+
+KRaft :
+-------
+bin\windows\kafka-storage.bat random-uuid
+
+	dwVr15boRbKmXeK8t5jVrw
+
+Run this only for First time :
+------------------------------
+bin\windows\kafka-storage.bat format -t dwVr15boRbKmXeK8t5jVrw -c config\kraft\server.properties
+
+To run the Kafka
+
+	bin\windows\kafka-server-start.bat config\server.properties
+
+	
 

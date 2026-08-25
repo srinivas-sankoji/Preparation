@@ -3,6 +3,7 @@
 3.useState with previous State                                          (Code Evolution)   			[09-DEC-2023]  (Done)
 4.useState with Object                                                  (Code Evolution)   			[09-DEC-2023]  (Done)
 5.useState with Array                                                   (Code Evolution)   			[09-DEC-2023]  (Done)
+
 6.useEffect Hook                                                        (Code Evolution)   			[09-DEC-2023]  (Done)
 7.useEffect after render                                                (Code Evolution)   			[09-DEC-2023]  (Done)
 8.conditionally run effects                                             (Code Evolution)   			[10-DEC-2023]  (Done)
@@ -43,18 +44,18 @@ https://whataboutcoding.com/crud-in-react-js-using-axios-building-an-app-using-r
 
 Hooks is a new feature added in React version 16.8 which allows us to use React features without having to write a Class.
 For example State of a Component without writing a Class.
-Hooks don't work inside the Classes and allows us to use React without Classes.
+We can't use Hooks inside the Class Component and can be used along with the Functional Components.
 
 Problem 1 :
 -----------
-To work with classes we must understand how "this" keyword works in Javascript which is different from other languages.
+To work with Classes we must understand how "this" keyword works in Javascript which is different from other languages.
 Also we need to bind the Event Handlers in the Class Component.
 Classes don't minify very well and make the hot reloading very unreliable.
 With Hooks we don't work with Class any more and we don't face any of these problems.
 
 Problem 2 :
 -----------
-While working with React there is no particular way to reuse stateful logic between Components.
+While working with React there is no particular way to reuse the stateful logic between Components.
 HOC and Render props addresses these problems but we have to restructure the Components which results in awkward looking Code.
 We end up in wrapping the Components with several other Components to share the functionality and makes the code hard to follow.
 There is a need to share the stateful logic in a better way.
@@ -62,7 +63,7 @@ Hooks allows us to reuse the stateful logic without changing the Component hiera
 
 Problem 3 :
 -----------
-Final reason is how the code is placed in the Component and the fact that the Complex Components become hard to understand.
+Final reason is how the code is placed in the Component and the fact that the Complex Components becomes hard to understand.
 Consider the scenario of creating the Components for complex scenarios such as data fetching and subscribing to Events.
 Here the related code is not organized in one place but scattered across different life cycle methods.
 
@@ -79,26 +80,24 @@ Hooks can be used from version 16.8 or higher.
 Hooks are completely opt in i.e. If we don't want to use Hooks then we can ignore it.
 Hooks does not contain any breaking changes and the release is backward compatible.
 Classes won't be removed from React.
-We can't use Hooks inside Class Component and can be used along with the Functional Components.
+We can't use Hooks inside the Class Component and can be used along with the Functional Components.
 Hooks doesn't replace our existing knowledge of React concepts.  
 Hooks provides a more direct API to the React Concepts that we already know.
 			
 ########################################################### 2.useState Hook  ###########################################################
 
-Create the Class Componenet with the counter functionality.
-Then implement the same functionality using Functional Component.
-
-The 3 steps to implement the counter functionality are 
-1.Functional Component
-2.State property initialized to 0
-3.Method that is capable of setting the state property value
-
 Hook is a special feature that allows us to hook into React features.
-useState is a hook that allows us to add State into Functional Component.
+useState is a hook that allows us to add State functionality into Functional Component.
 
 useState() accepts two arguments
 1.initial value of state property which returns the current value of the state property.
 2.method that is capable of updating the state property.
+
+Create the Functional Component with the counter functionality.
+The 3 steps to implement the Counter functionality are 
+1.Functional Component
+2.Initialize the State property to 0
+3.Method that is capable of setting the state property value
 
 	function UseStateCounter() {
     const [count, setCount] = useState(0)
@@ -112,16 +111,16 @@ useState() accepts two arguments
 	
 Note :
 ------
+When the Component renders state variable is created and initialized with default value.
 Variable count always contains the current value of the count.
 setCount accepts an argument and returns the updated count value.
-When the Component renders state variable is created and initialized with default value.
-The default value is never used on re-render.
 setCount will cause the Component to re-render.
+The default value is never used on re-render.
 
 Rules of Hooks :
 ----------------
 1.Call hooks only at the Top Level and don't call hooks inside loops,conditions or nested functions.
-2.Call hooks only from React Functions and not from regular Javascript Functions.
+2.Call hooks only from React Functions and not from regular Javascript functions.
 
             
 ########################################################### 3.useState with previous State #############################################
@@ -174,26 +173,29 @@ Any time if we want to update the state value based on previous value always pre
 
 A State variable can include Number,String,Boolean,Object or even an Array.
 UseState does not automatically merge and update the Object and we have to do it manually.
-This can be done by using Spread Operator i.e. copy every property in the name Object and override firstName with the different value.
+This can be done by using Spread Operator i.e. copy every property in the name Object and override firstName with the updated value.
+Similar us the cae with lastName.
 
 	function UseStateObject() {
-    const [name, setName] = useState({ firstName: '', lastName: '' })
-    return (
-        <div>
-            <form>
-                <div>
-                    <label>First name : </label>
-                    <input type='text' value={name.firstName} onChange={elemet => setName({...name,firstName:elemet.target.value})}></input>
-                </div>
-                <div>
-                    <label>Last name : </label>
-                    <input type='text' value={name.lastName} onChange={element => setName({...name,lastName:element.target.value})}></input>
-                </div>
-                <h2>{JSON.stringify(name)}</h2>
-            </form>
-        </div>
-    )
+	const [user, setUser] = useState({ firstName: '', lastName: '' })
+	return (
+			<div>
+				<form>
+					<div>
+						<label>First name : </label>
+						<input type='text' value={user.firstName} onChange={elemet => setUser({...user,firstName:elemet.target.value})}></input>
+					</div>
+					<div>
+						<label>Last name : </label>
+						<input type='text' value={user.lastName} onChange={element => setUser({...user,lastName:element.target.value})}></input>
+					</div>
+					<h2>{JSON.stringify(user)}</h2>
+				</form>
+			</div>
+		)
 	}
+	
+	export default UseStateObject
          
 ########################################################### 5.useState with Array ######################################################
 
