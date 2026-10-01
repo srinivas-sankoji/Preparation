@@ -11,20 +11,17 @@
 
 Logging Framework allows us to configure the behavior rather than doing the things in one way.
 we can set the Log Level,store the Logs into a File,Database etc.
-Spring Boot comes with its own Logging framework and we need to add the starter dependency.
-Basic  way to add the Logger is to use the LoggerFactory and it has a method Called getLogger that accepts the Class as an argument.
-SLF4J is the standard Logging Framework that Spring Boot Internally Uses.
+Spring Boot comes with its own Logging framework when we add the starter dependency i.e., spring-boot-starter-web by default it adds spring-boot-starter-logging.
+Basic  way to add the Logger is to use the LoggerFactory and it has a method called getLogger that accepts the Class as an argument.
 
 	Logger logger=LoggerFactory.getLogger(LoggingController.class);
 	
-Spring Boot by default provides the SLF4J Interface for Logging and the default implementation is Logback.
-When we add spring-boot-starter-web by default It adds spring-boot-starter-logging.
+Spring Boot internally uses SLF4J as the standard Logging Framework i.e., SLF4J interface for Logging and the default implementation is Logback.
+Logback is a Framework and is a kind of successor to the Log4J Framework.
+Here we are calling the Logging API using SLF4J and SLF4J delegating the work to Logback for Logging.
 
-Logback is a Framework and is a Kind of Successor to the Log4J Framework.
-Here we are Calling the Logging API Using SLF4J and SLF4J delegating the work to Logback for Logging.
-
-We can Configure the Log Levels and the default log Level is info.
-we can customize the Log level by configuring at the property Level i.e
+We can configure the Log Levels and the default log Level is info.
+we can customize the Log level by defining at the property level i
 
 	logging.level.root=trace
 	
@@ -42,33 +39,34 @@ logback.xml is the standard way of configuring the Logback for Logging Framework
 
 *************************************  4.Logging Best Practices  (Brandan Jones) ***************************************************
 
-Logging provides the ability to go back and investigate.
-Best Practice is to use the Log Levels appropriately.
+Logging provides the ability to investigate the issue and the best practice is to use the Log Levels appropriately.
 we can log things at different Levels.
 
 TRACE --> DEBUG --> INFO --> WARN --> ERROR
 
 We can also implement some custon Logging Levels.
-It is Important we are logging at the right Level.
+It is important we are logging at the right Level.
+
 Some thing that is a common occurence,normal and expected should not be logged.
 ERROR Should not be logged as INFO Similarly INFO Should not be Logged as ERROR.
-Use the Severity Levels to help us Shift through Logs and Find Out What actually Important and what caused the Issue.
+Use the Severity Levels which helps us to Shift through Logs and find out what actually important and what caused the issue.
 
-Shifting through Logs is an Important Skill.
-An ERROR will not be logged very Frequently in the Application where as TRACE and DEBUG are very Verbose.
+Shifting through Logs is an important Skill.
+An ERROR will not be logged very frequently in the Application where as TRACE and DEBUG are very verbose.
 
-We can have the General Log File that Contains Everthing.
-We can also have the Log File that is specific to Severity and helps to narrow down the Issue.
+We can have the General Log File that contains everthing.
+We can also have the Log File that is specific to Severity which helps to narrow down the issue.
+
 If we have a Try Catch Block or an Exception always should have a Log Statement in that even we dont need it.
-Dont Show the detailed Exception to the Users.
+Dont show the detailed exception to the users.
 
 ERROR :
 -------
-Use this only when we have a try catch block .
+Use this only when we have a try catch block.
 
 WARN :
 ------
-Gives a Warning like getting the empty List is a WARN. 
+Gives a Warning like getting the empty List is a WARN.
 
 INFO :
 ------
@@ -76,17 +74,12 @@ It is Like every day Occurence and gives the General Information.
 
 DEBUG :
 -------
-DEBUG will give the More Granular Level and is used only in Development.
+DEBUG will give the more Granular Level and is used only in Development.
 
 TRACE :
 -------
 TRACE is very fine Grained level which shows entry and Exit.
 
-By Default Spring Boot logs to the Console.
-If we want to log to Multiple Files we use the Configuration.
-
-	Logger logger=LoggerFactory.getLogger(LoggingController.class);
-	
 
 ************************************************************* 8.Logback in Spring Boot (Baledung) *****************************************************  
 

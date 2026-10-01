@@ -5,29 +5,28 @@
 5.Centralized logging with the ELK											(callistaenterprise)			[13-AUG-2020]  ()
 6.Why Trace ID and Span ID Matter											(Adet)							[07-MAR-2026]  (Done)
 7.Understanding MDC															(Arvind Kumar)					[07-MAR-2026]  (Done)
-8.Correlation ID															(Anil Goyal)					[08-MAR-2026]  ()
+8.Correlation ID															(ChatGPT)						[27-SEP-2026]  (Done)
 9.MDC Implementation														(ChatGPT)						[07-MAR-2026]  (Done)
-9.Open Telemetry Implementation												(ChatGPT)						[08-MAR-2026]  ()
+10.Open Telemetry Implementation											(ChatGPT)						[27-SEP-2027]  ()
 
 
 ################################## 1.Distributed Tracing in Microservice with Spring Cloud Sleuth & Zipkin (Java Techie)  ##############################################
 
-We need to add the Configuration to push the tracing details to the Zipkin Server.
-Define the AlwaysSampler in the Configuration.
+We need to add the configuration to push the tracing details to the Zipkin Server.
+Define the AlwaysSampler in the configuration.
 
 	@Bean
 	public Sampler defaultSampler() {
 		return  Sampler.ALWAYS_SAMPLE;
-		
 	}
 	
 If we call the Rest API directly then both Trace Id and Sapn Id will be the same.
 
 ################################## 2.Tracing in Distributed Systems with Spring Cloud Sleuth (reflectoring Techie)  ####################################################
 
-If any error occurs in the upstream service,upstream service will probably log the error.
-Since the downstream service recieves the error response,it will also log the error.
-For a Straight forward error analysis,both log entries should be connected by a shared correlation id.
+If any error occurs in the upstream service, upstream service will probably log the error.
+Since the downstream service recieves the error response, it will also log the error.
+For a Straight forward error analysis, both log entries should be connected by a shared correlation id.
 The correlationid is usually referred to as traceId.
 TraceId is created when a request from outside of the system is directed at a downstream service.
 TraceId is then passed to the upstream services so that they can use them in their log entries.
@@ -122,7 +121,7 @@ so that the Log Server can store and index them in a structured Manner.
 ##################################  4.Logs Monitoring in Microservices using ELK (Medium)  ####################################################################
 
 Log Management plays a very important role when we encounter an error in the Application.
-If we don't manage the logs,it will be difficult in an application especially in Microservices to find the error and Fix it.
+If we don't manage the logs, it will be difficult in an application especially in Microservices to find the error and fix it.
 
 #################################################### 6.Why Trace ID and Span ID Matter (Adet) #################################################################
 
@@ -349,14 +348,219 @@ Always ensure MDC values are cleared properly to prevent leakage in thread pools
 
 #################################################################### 8.Correlation ID (Anil Goyal) #####################################################################
 
+	correlationId = identifies the broader business operation
+	traceId       = identifies one distributed technical execution
+	spanId        = identifies one operation inside that execution
 
+For a simple synchronous request they may effectively represent the same scope.
+
+	POST /sales
+   |
+   | traceId = T100
+   |
+   +-- sales-service
+   +-- pricing-service
+   +-- inventory-service
+   
+The difference appears with asynchronous processing, retries, callbacks, scheduled jobs or workflows.
+
+Supplier onboarding :
+	CorrelationId = SUP-ONBOARD-7821
+
+DAY 1 :
+
+	User submits supplier
+			|
+			| TraceId = TRACE-A
+			v
+	supplier-service
+			|
+			+--> workflow-service
+			|
+			+--> Kafka event
+
+Several minutes later :
+
+	Kafka consumer
+			|
+			| TraceId = TRACE-B
+			v
+	notification-service
+
+DAY 2 :
+
+	Approver approves supplier
+			|
+			| TraceId = TRACE-C
+			v
+	workflow-service
+			|
+			+--> supplier-service
+			|
+			+--> audit-service
+			
+but all are part of CorrelationId = SUP-ONBOARD-7821.
+
+	TraceId
+		"Show me what happened during this distributed execution."
+
+	CorrelationId
+		"Show me everything associated with this broader business process."
+
+That is the problem a business correlation identifier can solve.
+
+Note :
+------
+You already have useful domain identifiers such as
+
+	saleId
+	purchaseOrderId
+	supplierId
+	workflowInstanceId
+	paymentId
 
 #################################################################### 9.MDC Implementation (ChatGPT)	####################################################################
 
 https://github.com/SrinivasSankoji/Distributed-Logging-MDC
 
-	
 
+#################################################################### 10.Open Telemetry Implementation (ChatGPT) ########################################################
+
+Logging tells what the code reports.
+Distributed tracing tells how a request actually traveled through the distributed system.
+OpenTelemetry provides a standardized way to generate and propagate telemetry — principally traces, metrics and logs—across services.
+
+	 UI
+	 |
+	 v
+	API Gateway
+	 |
+	 v
+	sales-service
+	 |
+	 +----> customer-service
+	 |
+	 +----> pricing-service
+	 |
+	 +----> inventory-service
+	 |
+	 +----> Kafka
+			  |
+			  +----> audit-service
+			  |
+			  +----> notification-service
+			  
+Without Distributed Tracing we primarily have the independent service logs.
+With Distributed Tracing, we additionally get the hierarchical representation of that hierarchy.
+
+Without Telemetry :
+-------------------
+Consider the scenario where the customer complaints Checkout took 8 seconds.
+We search the Json logs and obtain all related logs.
+But now you need to answer why did checkout take 8 seconds.
+we have to reconstruct timing from logs.
+But that requires we to have put the right logs around every operation.
+If we forgot anything then we don't have precise operation-level telemetry.
+
+With Telemetry :
+----------------
+
+	Trace ID: T100
+
+	POST /sales                           8.00 sec
+	│
+	├── API Gateway                      7.98 sec
+	│
+	└── sales-service                    7.90 sec
+		  │
+		  ├── validate customer           80 ms
+		  │
+		  ├── HTTP pricing-service       110 ms
+		  │     │
+		  │     └── PostgreSQL SELECT     25 ms
+		  │
+		  ├── HTTP inventory-service    7.30 sec    ← PROBLEM
+		  │     │
+		  │     ├── PostgreSQL SELECT     30 ms
+		  │     │
+		  │     └── PostgreSQL UPDATE   7.10 sec    ← ROOT AREA
+		  │
+		  ├── Kafka publish               40 ms
+		  │
+		  └── create response             20 ms
+	
+Immideately we see
+
+	Total request = 8 sec
+	Inventory service = 7.3 sec
+	Database UPDATE = 7.1 sec
+
+Does OpenTelemetry replace Logging :
+------------------------------------
+No. We still want
+	
+	SLF4J
+	   +
+	Logback
+	   +
+	structured JSON
+	
+OpenTelemetry complements those logs.
+
+LOG
+
+	"What happened?"
+	SALE_CREATED
+	STOCK_RESERVED
+	PAYMENT_FAILED
+	
+TRACE
+
+	"Where did the request travel,
+	how long did every operation take,
+	and where did the failure occur?"
+	
+METRIC
+
+	"How is the system behaving overall?"
+	request rate
+	error rate
+	latency
+	CPU
+	memory
+	JVM
+	DB connection pool
+	
+Together
+
+			OBSERVABILITY
+
+	Logs       Traces       Metrics
+	  |           |            |
+	  |           |            |
+   details     request       aggregate
+			   journey        health
+	
+What does OpenTelemetry actually output :
+-----------------------------------------
+OpenTelemetry itself is not primarily the UI where we search traces.
+It generates/collects telemetry and exports it.
+
+	Spring Boot services
+		   |
+		   | OpenTelemetry
+		   v
+	OTel Collector
+		   |
+		   +---------------------+
+		   |          |          |
+		 Traces     Metrics     Logs
+		   |          |          |
+		   v          v          v
+	   tracing      metrics     logging
+	   backend      backend     backend
+	   
+The OpenTelemetry Collector can receive, process and export telemetry to one or more observability backends.
 
 
 

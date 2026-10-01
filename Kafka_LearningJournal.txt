@@ -197,15 +197,40 @@ KRaft :
 -------
 bin\windows\kafka-storage.bat random-uuid
 
-	dwVr15boRbKmXeK8t5jVrw
+	22MeSMegQwK0ZbDD-NIpcg
 
 Run this only for First time :
 ------------------------------
-bin\windows\kafka-storage.bat format -t dwVr15boRbKmXeK8t5jVrw -c config\kraft\server.properties
+bin\windows\kafka-storage.bat format -t 22MeSMegQwK0ZbDD-NIpcg -c config\kraft\server.properties
+
+bin\windows\kafka-storage.bat format --cluster-id 22MeSMegQwK0ZbDD --standalone --config config\server.properties
+
+bin\windows\kafka-storage.bat format --standalone -t 34W45h1aRvSng-kOWsGDzA -c config\server.properties
+
+dir F:\tmp\kraft-combined-logs
 
 To run the Kafka
 
 	bin\windows\kafka-server-start.bat config\server.properties
-
 	
+Kafka Issue :
+-------------
+Make sure Kafka is stopped.
 
+	jps -lv | findstr /I kafka
+	
+Delete the storage.
+
+	rmdir /S /Q "F:\tmp\kraft-combined-logs"
+	
+Generate a new cluster ID.
+
+	bin\windows\kafka-storage.bat random-uuid
+
+Copy that value and format the storage.
+
+	bin\windows\kafka-storage.bat format --standalone -t 34W45h1aRvSng-kOWsGDzA -c config\server.properties
+
+Start the Kafka
+
+	bin\windows\kafka-server-start.bat config\server.properties

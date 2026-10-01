@@ -360,7 +360,161 @@ Commit the code to GitHub ()
 git config user.name "emedisoftsolutions"
 git config user.email "emedisoftsolutions@gmail.com"
 
+26-AUG-2026 :
+-------------
 
+27-AUG-2026 :
+-------------
+
+28-AUG-2026 :
+-------------
+Location Service (Done)
+
+29-AUG-2026 & 30-AUG-2026 :
+---------------------------
+
+
+###################################################### Septemer 2026  ################################################################
+
+03-SEP-2026 :
+-------------
+Location Revise (Done)
+Location Service Images Revise ()
+Product Master Implementation (Done)
+
+05-SEP-2026 & 06-SEP-2026 :
+---------------------------
+Supplier Service Implementation (Done)
+Supplier Service Documentation (Done)
+
+07-SEP-2026 :
+-------------
+Product Service Documentation (Done)
+Identity & Access Service (InProgress)
+
+08-SEP-2026 :
+-------------
+Product Service with IAM (InProgress)
+
+09-SEP-2026 :
+-------------
+Product Service with IAM (Done)
+Organization service Changes for Identity & Access Service (Done)
+Location service Changes for Identity & Access Service (Done)
+
+10-SEP-2026 :
+-------------
+Organization Service Testing (Done)
+
+11-SEP-2026 :
+-------------
+Location Service Testing (Done)
+Identity & Access Service Documentation (Done)
+
+12-SEP-2026 & 13-SEP-2026 :
+---------------------------
+DCS Code Walkthrough ()
+                   
+14-SEP-2026 :
+-------------
+DCS Code Walkthrough ()
+
+15-SEP-2026 :
+-------------
+EdgeBuildingModelService (Done)
+BMSConcepts ()
+GatewayVsController ()
+DCSSiteJsonMapping (Done)
+
+16-SEP-2026 :
+-------------
+
+17-SEP-2026 :
+-------------
+LightGrid Revise ()
+DCS Revise ()
+
+18-SEP-2026 :
+-------------
+
+19-SEP-2026 & 20-SEP-2026 :
+---------------------------
+Identity & Access Service Testing (After Inventory Service)
+Organization Service Documentation ()
+Supplier Service Implementation with IAM (Done)
+Supplier Service Testing (Done)
+Pending Functionalities ()
+WorkFlow Service Implementation - Organization Service (Done)
+WorkFlow Service Implementation - Location Service (Done)
+WorkFlow Service Implementation - Product Service (Done)
+WorkFlow Service Implementation - Supplier Service (Done)
+WorkFlow Service Implementation - Notification Service (Done)
+WorkFlow Service Testing (InProgress)
+WorkFlow Service Documentation ()
+
+21-SEP-2026 :
+-------------
+
+22-SEP-2026 :
+-------------
+Code Replacement (Done)
+DB Clean up Changes (Done)
+Final Updated Curl Request (Done)
+Commit the Code to GitHub (Done)
+Updated Curl Requests (Done)
+Code Backup (Done)
+
+23-SEP-2026 :
+-------------
+
+24-SEP-2026 :
+-------------
+
+25-SEP-2026 :
+-------------
+Audit Service Implementation (Done)
+Procurement Service Implementation (Done)
+
+26-SEP-2026 & 27-SEP-2026 :
+---------------------------
+Inventory Service Implementation (Done)
+Pricing Service Implementation (Done)
+Customer Service Implementation (Done)
+Sales Service Implementation (Done)
+
+Integration Service Overview (Done)
+Reporting Service Overview (InProgress)
+API Gateway in Medsoft Overview (InProgress)
+
+28-SEP-2026 :
+-------------
+
+29-SEP-2026 :
+-------------
+Logging in Medsoft (Done)
+Open Telemetry in Medsoft (Done)
+
+30-SEP-2026 :
+-------------
+
+###################################################### October 2026  ################################################################
+
+01-OCT-2026 :
+-------------
+Simulator Code and Adapter Code Commit ()
+GitHub with different Accounts Scenario ()
+GitHub Backup and Commit ()
+
+Simulator Gateway Duplication Scenario ()
+
+02-OCT-2026 :
+-------------
+Jenkins Integration in MedSoft ()
+GitHub Commit ()
+
+03-SEP-2026 & 04-SEP-2026 :
+---------------------------
+Garfana Overview ()
 
 
 
