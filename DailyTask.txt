@@ -501,7 +501,7 @@ Open Telemetry in Medsoft (Done)
 
 01-OCT-2026 :
 -------------
-Simulator Code and Adapter Code Commit ()
+Simulator Code and Adapter Code Commit (InProgress)
 GitHub with different Accounts Scenario ()
 GitHub Backup and Commit ()
 
